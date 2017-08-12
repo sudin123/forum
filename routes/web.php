@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware'=>'auth'],function(){
+    // Route::get('/dashboard','HomeController@backend')->name('backend');
+});
+Route::get('/dashboard','HomeController@backend')->name('backend');
+
+// Route::get('/dashboard',function(){
+//     return view('backend.dashboard');
+// });
